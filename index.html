@@ -1,0 +1,131 @@
+ <!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>فون لاب</title>
+<style>
+*{box-sizing:border-box}body{font-family:Arial;background:#0f0216;color:#fff;margin:0}
+header{background:#170723;padding:12px 18px;display:flex;justify-content:space-between;align-items:center}
+header .logo{color:#ff4d8d;font-size:26px;font-weight:900}
+header nav a{color:#ddd;text-decoration:none;margin:0 7px;font-size:13px}
+header button{background:#2a0f2e;border:1px solid #555;color:#fff;padding:8px 12px;border-radius:10px}
+.hero{background:radial-gradient(circle at 80% 10%,#5a1040,#12051a 65%);padding:25px 18px;display:flex;gap:18px;flex-wrap:wrap;justify-content:center;align-items:center}
+.hero h1{font-size:36px;color:#ff8fbf;margin:0;line-height:1.1}
+.quiz{background:rgba(255,255,255,.08);border:1px solid #ff4d8d66;padding:14px;border-radius:14px;max-width:560px}
+.quiz-grid{display:flex;gap:10px;flex-wrap:wrap}.quiz-grid div{flex:1;min-width:140px}
+.quiz button{background:#2a0f2e;color:#fff;border:none;padding:8px 6px;border-radius:20px;margin:3px;width:100%;font-size:12px;cursor:pointer}
+.quiz .pink{background:#ff2e7e !important}.quiz .dark{background:#2a0f2e}
+.quiz input{width:100%;padding:10px;border-radius:10px;border:none;margin:4px 0;color:#000;text-align:center}
+.hero img{width:320px;max-width:95%;border-radius:20px}
+.main-btn{background:#ff2e7e;color:#fff;border:none;padding:12px;border-radius:10px;font-size:16px;margin-top:10px;cursor:pointer;width:100%}
+.sec{padding:18px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.box{background:#1a0826;border:1px solid #ff4d8d33;padding:14px;border-radius:14px;flex:1;min-width:260px}
+.box input,.box select{width:100%;padding:10px;border-radius:10px;border:none;margin:5px 0;color:#000}
+.big{font-size:24px;color:#ff8fbf;font-weight:bold}
+.cards{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;padding:10px 18px 30px}
+.card{background:#1a0826;border-radius:18px;padding:14px;width:300px;text-align:center}
+.card img{width:100%;height:180px;object-fit:cover;border-radius:14px}
+.badge{background:#ff2e7e;padding:5px 12px;border-radius:20px;font-size:12px;display:inline-block;margin-bottom:8px}
+.price{color:#ff8fbf;font-size:22px;font-weight:900;margin:8px 0}
+.wa{background:#ff2e7e;color:#fff;border:none;padding:11px;width:100%;border-radius:10px;font-size:15px;cursor:pointer}
+.admin{background:#2a0f2e;padding:15px;border-radius:15px;max-width:560px;margin:15px auto}
+.admin input{width:92%;padding:10px;border-radius:10px;border:none;margin:5px;color:#000}
+.admin button{background:#ff2e7e;color:#fff;border:none;padding:10px 14px;border-radius:10px;margin:5px;cursor:pointer}
+footer{background:#2a0f2e;padding:14px;text-align:center;font-size:12px;color:#aaa}
+</style>
+</head>
+<body>
+<header><div class="logo">📱 فون لاب</div><nav><a href="#" onclick="showPage('shop')">الدعم</a><a href="#" onclick="showPage('shop')">العروض</a><a href="#" onclick="showPage('shop')">استبدال هاتفك</a><a href="#" onclick="showPage('shop')">المتجر</a><a href="#" onclick="showPage('shop')">الرئيسية</a></nav><button onclick="showPage('admin')">تسجيل الدخول</button></header>
+
+<div id="shop">
+<div class="hero">
+<div style="flex:1;min-width:300px;max-width:600px">
+<h1>اختر هاتفك في 30 ثانية</h1>
+<p>جاوب على 3 أسئلة فقط واحصل على أفضل هاتف يناسبك فوراً</p>
+<div class="quiz">
+<b>الاختيار السريع:</b>
+<div class="quiz-grid">
+<div><b>3. الأولوية:</b><br><button class="pink" data-group="prio" data-val="photo" onclick="pick(this)">📷 الكاميرا</button><button class="dark" data-group="prio" data-val="battery" onclick="pick(this)">🔋 البطارية</button><button class="dark" data-group="prio" data-val="perf" onclick="pick(this)">⚡ الأداء</button></div>
+<div><b>2. الاستخدام الأساسي:</b><br><button class="dark" data-group="use" data-val="game" onclick="pick(this)">🎮 الألعاب</button><button class="dark" data-group="use" data-val="photo" onclick="pick(this)">📷 التصوير</button><button class="dark" data-group="use" data-val="daily" onclick="pick(this)">📱 الاستخدام اليومي</button></div>
+<div><b>1. الميزانية - الزبون هو اللي يكتبها:</b><br>
+<input id="budgetFrom" placeholder="من كام؟ مثلا 5000" type="number">
+<input id="budgetTo" placeholder="لـ كام؟ مثلا 10000" type="number">
+<p style="font-size:11px;color:#ffcfdf;margin:2px">اكتب الميزانية اللي انت عايزها من كذا لـ كذا</p>
+</div>
+</div>
+<button class="main-btn" onclick="showResult()">→ أظهر لي الهاتف المناسب</button>
+<p id="quizResult"></p><p id="myChoices" style="font-size:13px;color:#ffcfdf"></p>
+</div>
+</div>
+<img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=700">
+</div>
+
+<div class="sec">
+<div class="box"><h3>كيف يعمل؟ ❓</h3><p>1 - اكتب ميزانيتك من كذا لـ كذا<br>2 - اختار الاستخدام والأولوية<br>3 - الموقع يرشحلك الموبايل اللي على قد فلوسك</p></div>
+<div class="box"><h3>حاسبة قيمة هاتفك</h3>
+<input id="oldPhoneInput" placeholder="اكتب اسم موبايلك - اكتب اللي انت عايزه">
+<input id="oldPriceInput" placeholder="موبايلك ده كان بكام؟ مثلا 6000">
+<select id="oldCond"><option>ممتاز</option><option>جيد</option><option>مقبول</option></select>
+<button class="wa" onclick="calcTrade()">ابعت لصاحب المحل يقيمه</button><p id="tradeResult"></p></div>
+<div class="box"><h3>استبدل هاتفك القديم</h3><p>اكتب موبايلك، وصاحب المحل هو اللي هيحط السعر اللي هو عايزه</p><div class="big"><span id="tradePrice">في انتظار تقييم صاحب المحل</span></div><button class="wa" onclick="orderTrade()">استبدل الآن - ابعت على واتساب</button></div>
+</div>
+
+<div style="text-align:center"><h2>هواتف مرشحة لك بناءً على إجاباتك</h2><input id="searchInput" placeholder="دور باسم الموبايل..." style="width:90%;max-width:480px;padding:12px;border-radius:12px;border:none;color:#000"></div>
+<div class="cards" id="products"></div>
+</div>
+
+<div id="admin" style="display:none"><div class="admin">
+<h2>لوحة التحكم - صاحب المحل هو اللي بيحط كل حاجة</h2>
+<p>رقم الواتساب الحالي: <span id="currentNum">201000000000</span></p>
+<input id="newWhatsapp" placeholder="اكتب رقمك مثلا 01012345678"><button onclick="changeWhatsapp()">حفظ رقم الواتساب ✅</button><p id="msgWhatsapp"></p><hr>
+<h3>💰 أسعار الاستبدال - فاضية، انت اللي بتحطها</h3>
+<input id="tradeName" placeholder="اكتب أي موبايل انت عايزه"><input id="tradeValue" placeholder="السعر اللي انت عايزه"><button onclick="addTradePrice()">حفظ السعر ✅</button><p id="msgTrade"></p><div id="tradeList" style="font-size:13px;background:#1a0826;padding:10px;border-radius:10px">لسه مفيش أسعار، انت اللي هتحطها</div><hr>
+<h3>➕ أضف موبايل جديد - اكتب اللي انت عايزه</h3>
+<input id="pName" placeholder="اسم الموبايل"><input id="pPrice" placeholder="السعر"><input id="pSpec" placeholder="المواصفات"><input id="pImg" placeholder="لينك صورة"><input type="file" id="pFile" accept="image/*"><button onclick="addProduct()">أضف موبايل</button><p id="msg"></p>
+</div></div>
+
+<footer>© 2024 فون لاب</footer>
+<script>
+var whatsappNumber='201000000000';
+var allProducts=[
+{name:'Xiaomi Redmi Note 13',price:'899',spec:'256GB - 6GB RAM - بطارية 5000mAh',cat:'daily battery',img:'https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?w=600',tag:'الأفضل للميزانية',num:899},
+{name:'iPhone 13',price:'2,599',spec:'128GB - 4GB RAM - كاميرا مزدوجة 12MP',cat:'photo perf',img:'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600',tag:'الأفضل للتصوير',num:2599},
+{name:'Samsung Galaxy A55 5G',price:'1,899',spec:'256GB - 8GB RAM - كاميرا 50MP',cat:'game perf photo',img:'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=600',tag:'الأفضل للألعاب',num:1899}
+];
+var tradePrices={};
+var lastTradePhone=''; var lastTradeOrig='';
+function showPage(p){document.getElementById('shop').style.display=p=='shop'?'block':'none';document.getElementById('admin').style.display=p=='admin'?'block':'none';}
+var choices={use:'',prio:'photo'};
+function pick(btn){var g=btn.getAttribute('data-group'); var v=btn.getAttribute('data-val'); if(choices[g]==v){choices[g]=''; btn.className='dark';} else {choices[g]=v; var all=document.querySelectorAll('button[data-group="'+g+'"]'); for(var i=0;i<all.length;i++){all[i].className='dark';} btn.className='pink';} updateChoices();}
+function updateChoices(){var f=document.getElementById('budgetFrom').value; var t=document.getElementById('budgetTo').value; var txt='اختياراتك: '; if(f||t) txt+=' الميزانية من '+ (f||'...') +' لـ '+(t||'...')+' | '; if(choices.use) txt+=' الاستخدام: '+choices.use+' | '; if(choices.prio) txt+=' الأولوية: '+choices.prio; document.getElementById('myChoices').innerText=txt;}
+document.getElementById('budgetFrom').addEventListener('input',updateChoices);
+document.getElementById('budgetTo').addEventListener('input',updateChoices);
+function showResult(){
+var from=parseInt(document.getElementById('budgetFrom').value)||0;
+var to=parseInt(document.getElementById('budgetTo').value)||99999999;
+var f=[];
+for(var i=0;i<allProducts.length;i++){
+var ok=true;
+if(allProducts[i].num < from || allProducts[i].num > to) ok=false;
+if(choices.use && allProducts[i].cat.indexOf(choices.use)==-1) ok=false;
+if(choices.prio && allProducts[i].cat.indexOf(choices.prio)==-1) ok=false;
+if(ok) f.push(allProducts[i]);
+}
+if(f.length==0){document.getElementById('quizResult').innerText='مفيش موبايل بالظبط في الميزانية دي، دي كل الموبايلات اللي عندنا'; f=allProducts;}
+else {document.getElementById('quizResult').innerText='لقينا لك '+f.length+' موبايلات من '+ (from||0) +' لـ '+ (to==99999999?'...':to) +' مناسبة ليك';}
+showProducts(f); window.scrollTo(0,900);
+}
+function showProducts(list){var box=document.getElementById('products'); box.innerHTML=''; for(var i=0;i<list.length;i++){var p=list[i]; var d=document.createElement('div'); d.className='card'; var b=document.createElement('div'); b.className='badge'; b.textContent=p.tag; d.appendChild(b); var im=document.createElement('img'); im.src=p.img; d.appendChild(im); var h=document.createElement('h3'); h.textContent=p.name; d.appendChild(h); var s=document.createElement('p'); s.textContent=p.spec; s.style.color='#aaa'; s.style.fontSize='13px'; d.appendChild(s); var pr=document.createElement('div'); pr.className='price'; pr.textContent=p.price+' ر.س'; d.appendChild(pr); var btn=document.createElement('button'); btn.className='wa'; btn.textContent='💬 تواصل عبر واتساب'; btn.setAttribute('data-n',p.name); btn.onclick=function(){orderWhats(this.getAttribute('data-n'));}; d.appendChild(btn); box.appendChild(d);}}
+document.getElementById('searchInput').addEventListener('input',function(){var w=this.value; var f=[]; for(var i=0;i<allProducts.length;i++){if(allProducts[i].name.indexOf(w)!==-1) f.push(allProducts[i]);} showProducts(f);});
+function orderWhats(pr){window.open('https://wa.me/'+whatsappNumber+'?text='+encodeURIComponent('اهلا، عايز اطلب: '+pr),'_blank');}
+function orderTrade(){if(!lastTradePhone){alert('اكتب موبايلك الاول');return;} window.open('https://wa.me/'+whatsappNumber+'?text='+encodeURIComponent('اهلا، عايزة استبدل: '+lastTradePhone+' - كان بكام: '+lastTradeOrig+' - الحالة: '+document.getElementById('oldCond').value),'_blank');}
+function calcTrade(){var phone=document.getElementById('oldPhoneInput').value.trim(); var orig=document.getElementById('oldPriceInput').value.trim(); var cond=document.getElementById('oldCond').value; if(!phone){document.getElementById('tradeResult').innerText='اكتب اسم موبايلك الاول';return;} lastTradePhone=phone; lastTradeOrig=orig||'مش مكتوب'; var key=phone.toLowerCase(); if(tradePrices[key]){document.getElementById('tradePrice').innerText=tradePrices[key]+' ر.س - ده السعر اللي صاحب المحل حطه'; document.getElementById('tradeResult').innerText='صاحب المحل حاطط لموبايلك ده سعر: '+tradePrices[key];} else {document.getElementById('tradePrice').innerText='في انتظار تقييم صاحب المحل'; document.getElementById('tradeResult').innerText='موبايلك: '+phone+' - كان بكام: '+lastTradeOrig+' - الحالة: '+cond+' - دوس استبدل الآن وصاحب المحل هو اللي هيحط السعر';}}
+function renderTradeList(){var h=''; var c=0; for(var k in tradePrices){h+=k+' = '+tradePrices[k]+' ر.س<br>'; c++;} if(c==0) h='لسه مفيش أسعار، انت اللي هتحطها'; document.getElementById('tradeList').innerHTML='<b>أسعارك انت:</b><br>'+h;}
+function addTradePrice(){var n=document.getElementById('tradeName').value.trim().toLowerCase(); var v=document.getElementById('tradeValue').value.trim(); if(!n||!v){document.getElementById('msgTrade').innerText='اكتب الاسم والسعر';return;} tradePrices[n]=v; renderTradeList(); document.getElementById('msgTrade').innerText='تم ✅ - انت حطيت: '+n+' = '+v;}
+function changeWhatsapp(){var n=document.getElementById('newWhatsapp').value.trim(); if(!n){document.getElementById('msgWhatsapp').innerText='اكتب رقمك الاول';return;} if(n.charAt(0)=='0') n='20'+n.substring(1); if(n.charAt(0)=='+') n=n.substring(1); whatsappNumber=n; document.getElementById('currentNum').innerText=n; document.getElementById('msgWhatsapp').innerText='تم حفظ رقم الواتساب ✅';}
+function addProduct(){var name=document.getElementById('pName').value; var price=document.getElementById('pPrice').value; var spec=document.getElementById('pSpec').value||'مواصفات ممتازة'; var link=document.getElementById('pImg').value; var f=document.getElementById('pFile'); if(!name||!price){document.getElementById('msg').innerText='اكتب الاسم والسعر';return;} if(f.files.length>0){var r=new FileReader(); r.onload=function(e){allProducts.push({name:name,price:price,spec:spec,cat:'daily',img:e.target.result,tag:'جديد',num:parseInt(price)||0}); showProducts(allProducts); document.getElementById('msg').innerText='تمت الاضافة ✅';}; r.readAsDataURL(f.files[0]);} else {allProducts.push({name:name,price:price,spec:spec,cat:'daily',img:link||'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600',tag:'جديد',num:parseInt(price)||0}); showProducts(allProducts); document.getElementById('msg').innerText='تمت الاضافة ✅';}}
+showProducts(allProducts); renderTradeList();
+</script>
+</body>
+</html>
